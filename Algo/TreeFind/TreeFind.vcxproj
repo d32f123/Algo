@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3D76800E-4C3F-4B5D-BDE2-3E1358F0872E}</ProjectGuid>
-    <RootNamespace>SetSubset</RootNamespace>
+    <ProjectGuid>{5A4820D5-293B-42CE-A55D-DE4AFB4D777F}</ProjectGuid>
+    <RootNamespace>TreeFind</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

@@ -23,6 +23,7 @@ void Difference(SETINARRAY &A, SETINARRAY &B, SETINARRAY &Res); // Разность Res 
 short SymClass(char z); //Классификатор символов
 int StringToIntArray(string &p, int *r); // разбор строки в массив целых чисел
 string ArrayToString(int *p, int np); // для вывода
+int binary_search(int * A, int n, int x);
 
 int main() { // Точка входа в программу
 	SETINARRAY X, Y, Z;
@@ -46,18 +47,93 @@ void Union(SETINARRAY &A, SETINARRAY &B, SETINARRAY &Res) {
 	// функция вычисляет объединение множеств a,b
 	// результат помещается в *Res
 	// предполагается что множества не содержат дубликатов
+	int i = 0, j = 0, k = 0;
+	while (i != A.n || j != B.n)
+	{
+		if (i == A.n)
+		{
+			Res.m[k++] = B.m[j++];
+		}
+		else if (j == B.n)
+		{
+			Res.m[k++] = A.m[i++];
+		}
+		else if (A.m[i] == B.m[j])
+		{
+			Res.m[k++] = A.m[i++];
+			++j;
+		}
+		else if (A.m[i] < B.m[j])
+		{
+			Res.m[k++] = A.m[i++];
+		}
+		else
+		{
+			Res.m[k++] = B.m[j++];
+		}
+	}
+	Res.n = k;
+}
+
+int binary_search(int * A, int n, int x)
+{
+	int left = 0, right = n - 1, m;
+	if (x > A[right] || x < A[left])
+		return -1;
+	if (x == A[right])
+		return n - 1;
+	if (x == A[left])
+		return 0;
+	while (true)
+	{
+		if (left == right)
+		{
+			if (A[left] != x)
+				return -1;
+			return left;
+		}
+		m = (left + right) / 2;
+		if (x == A[m])
+			return m;
+		else if (m == left || m == right)
+		{
+			return -1;
+		}
+		else if (x > A[m])
+			left = m;
+		else
+			right = m;
+	}
 }
 
 void Cross(SETINARRAY &A, SETINARRAY &B, SETINARRAY &Res) {
 	// НАПИШИТЕ САМИ
 	// функция вычисляет пересечение множеств a,b
 	// результат помещается в *Res
+	int k = 0;
+	for (int i = 0; i < A.n; ++i)
+	{
+		if (binary_search(B.m, B.n, A.m[i]) != -1)
+		{
+			Res.m[k++] = A.m[i];
+		}
+	}
+	Res.n = k;
 }
 
 void Difference(SETINARRAY &A, SETINARRAY &B, SETINARRAY &Res) {
 	// НАПИШИТЕ САМИ
 	// функция вычисляет разность множеств a,b
 	// результат помещается в *Res
+	int k = 0;
+	for (int i = 0; i < A.n; ++i)
+	{
+		if (binary_search(B.m, B.n, A.m[i]) == -1)
+		{
+			Res.m[k++] = A.m[i];
+		}
+	}
+	Res.n = k;
 }
 
 short SymClass(char z) {

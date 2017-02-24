@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3D76800E-4C3F-4B5D-BDE2-3E1358F0872E}</ProjectGuid>
-    <RootNamespace>SetSubset</RootNamespace>
+    <ProjectGuid>{7AA0DB04-6BC3-4248-80CD-26B9B01F268B}</ProjectGuid>
+    <RootNamespace>StackParenthesis</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
