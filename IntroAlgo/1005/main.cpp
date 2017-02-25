@@ -6,15 +6,11 @@
 
 using namespace std;
 
-int m = 10000;
-int * a;
-
-
 int main()
 {
 	int K, k, min = INT_MAX;
 	cin >> K;
-	a = new int[K];
+	int * a = new int[K];
 	for (int i = 0; i < K; i++)
 	{
 		cin >> k;
