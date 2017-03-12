@@ -43,7 +43,7 @@ int readS(vector<string> & sRules, std::istream & fin)
 int readP(vector<string> & leftSide, vector<string> & rightSide, std::istream & fin)
 {
 	string temp;
-	std::regex e("(.*)==>(.*)");
+	std::regex e("(.*)>(.*)");
 	
 	while ((fin >> temp) && temp[0] != '.')
 	{
@@ -227,8 +227,9 @@ int main(int argc, char* argv[])
 
 	if (!rulesFromArg)
 	{
-		cout << "Enter the set of rules in the following format: <A>==><B>,<C>,...\nEx:A==>a,b,CB,bC,...\nEnter . to stop the input\n"
-			<< "Ex: AB==>aab\n";
+		cout << "Enter the set of rules in the following format: A>B,C,...\nEx:A>a,b,CB,bC,...\n" <<
+			"To enter the empty symbol, just leave a blank space\n" <<
+			"Enter . to stop the input\n";
 		int ret = readP(leftSide, rightSide, std::cin);
 		if (ret)
 			return 1;
@@ -290,7 +291,7 @@ int main(int argc, char* argv[])
 			break;
 		++M;
 		if (!interactive) 
-			std::cerr << M;
+			std::cerr << M << std::endl;
 	} while (justLoop ? true : false || interactive ? askCont() : false || useKParameter ? M < K : false);
 	return 0;
 }
