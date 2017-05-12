@@ -9,6 +9,7 @@ int main()
 	int N, K;
 	cin >> N >> K;
 	cout << Combin(K, N);
+	system("pause");
 	return 0;
 }
 

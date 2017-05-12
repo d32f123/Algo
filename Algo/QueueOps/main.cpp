@@ -29,8 +29,8 @@ int main() {
 	// ВНИМАНИЕ!!!
 	// Для отладки программы используйте процедуру debugging()
 	// Тестирование происходит с помощью процедуры test()
-	//debugging(); // При отправке решения на ipc закомментировать
-	test();      // При отправке решения на ipc раскомментировать 
+	debugging(); // При отправке решения на ipc закомментировать
+	//test();      // При отправке решения на ipc раскомментировать 
 	return 0;
 }
 
@@ -38,11 +38,11 @@ bool PutInQueue(int x) {
 	// НАПИШИТЕ ЭТУ ФУНКЦИЮ
 	// поместить элемент x в очередь
 	// возвращает истину в случае успеха
-	if ((T.F - (T.L + 1) == 0 || T.L - T.F + 1 == M) && !T.IsEmpty)
+	if ((T.F - (T.L + 1)) % M == 0 && !T.IsEmpty) // второй случай -- когда T.F равен нулю
 	{
-		return false;
+		return false;	// полная очередь
 	}
-	T.Q[T.L + 1 == 8 ? T.L = 0 : ++T.L] = x;
+	T.Q[++T.L, T.L %= 8] = x;
 	T.IsEmpty = false;
 	return true;
 }
@@ -55,11 +55,11 @@ int TakeFromQueue() {
 	// если очередь пуста, то возвращается INT_MAX (defined в limits.h)
 	if (T.IsEmpty)
 		return INT_MAX;
-	if (T.F + 1 - T.L == 1)
+	if ((T.F + 1 - T.L) % M == 1)
 	{
 		T.IsEmpty = true;
 	}
-	return T.Q[T.F + 1 == 8 ? (T.F = 0) + M - 1 : ++T.F - 1];
+	return T.Q[T.F + 1 == M ? (T.F = 0) + M - 1 : ++T.F - 1];
 }
 
 void debugging() { // Процедура для отладки
